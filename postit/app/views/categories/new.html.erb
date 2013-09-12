@@ -1,0 +1,22 @@
+<% if @category.errors.any? %>
+  <div class="row">
+    <div class="alert alert-error span8">
+      <h5>Please fix the following errors:</h5>
+      <ul>
+   <% @category.errors.full_messages.each do |msg| %>
+     <li><%= msg %> </li>
+   <% end %>
+      </ul>
+    </div>
+  </div>
+<% end %>
+
+<div class='well'>
+  <%= form_for @category do |f| %>
+      <div class='control-group'>
+      <%= f.label :name %>
+      <%= f.text_field :name %>
+      </div>
+      <%= f.submit 'Create Category', class: 'btn btn-success' %>
+  <% end %>
+</div>

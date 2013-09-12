@@ -1,5 +1,5 @@
 <% if @post.errors.any? %>
-  <div class="row"> 
+  <div class="row">
     <div class="alert alert-error span8">
       <h5>Please fix the following errors:</h5>
       <ul>
@@ -11,12 +11,12 @@
   </div>
 <% end %>
 
-<%= form_for @post do |f| %> 
-  <%= f.label :title %> 
-  <%= f.text_field :title %> 
-  <br/> 
+<%= form_for @post do |f| %>
+  <%= f.label :title %>
+  <%= f.text_field :title %>
+  <br/>
   <%= f.label :url %>
   <%= f.text_field :url %>
-  <br/> 
+  <br/>
   <%= f.submit(@post.new_record? ? "Create Post" : "Update Post") %>
 <% end %>
