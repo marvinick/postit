@@ -1,0 +1,22 @@
+<% if @post.errors.any? %>
+  <div class="row"> 
+    <div class="alert alert-error span8">
+      <h5>Please fix the following errors:</h5>
+      <ul>
+   <% @post.errors.full_messages.each do |msg| %>
+     <li><%= msg %> </li>
+   <% end %>
+      </ul>
+    </div>
+  </div>
+<% end %>
+
+<%= form_for @post do |f| %> 
+  <%= f.label :title %> 
+  <%= f.text_field :title %> 
+  <br/> 
+  <%= f.label :url %>
+  <%= f.text_field :url %>
+  <br/> 
+  <%= f.submit(@post.new_record? ? "Create Post" : "Update Post") %>
+<% end %>
