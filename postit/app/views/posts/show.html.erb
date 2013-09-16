@@ -1,4 +1,17 @@
 <h3>Show Post</h3>
 <%= link_to @post.title, fix_url(@post.url) %>
 
+<h5>Comments:</h5>
+
+<%= form_for [@post, @comment] do |f|  %>
+  <%= f.label :body, "Leave a comment" %>
+  <%= f.text_area :body, rows: 5 %>
+  <br/>
+  <%= f.submit "Create Comment", class: 'btn btn-primary' %>
+<% end %>
+
+<ul>
+  <% @post.comments.each do |comment| %>
+    <li><%= comment.body %> </li>
+  <% end %>
 </ul>
