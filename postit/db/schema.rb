@@ -30,9 +30,6 @@ ActiveRecord::Schema.define(version: 20130916204810) do
   create_table "migrations", force: true do |t|
   end
 
-  create_table "password_digests", force: true do |t|
-  end
-
   create_table "post_categories", force: true do |t|
     t.integer  "category_id"
     t.integer  "post_id"
