@@ -1,0 +1,8 @@
+h3>Show Category</h3>
+<%= link_to @category.title, fix_url(@category.url) %>
+
+<ul>
+  <% @post.category.each do |category| %>
+    <li><%= category.body %> </li>
+  <% end %>
+</ul>

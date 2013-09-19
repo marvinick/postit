@@ -3,6 +3,10 @@ class CategoriesController < ApplicationController
     @category = Category.new
   end
 
+  def show
+    @category = Category.new
+  end
+
   def create
     @category = Category.new (params.require(:category).permit(:name))
 
