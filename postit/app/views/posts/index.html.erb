@@ -1,11 +1,11 @@
-<h3>Wilkommen!!</h3>
+<h3>Welcome !!</h3>
 
 <ul>
 	<% @posts.each do |post| %>
 	  <li>
-      <%= link_to '+', vote_post_path(post, vote: true), method: 'post' if logged_in? %>
-      [ <%= post.total_votes %> ]
-      <%= link_to '-', vote_post_path(post, vote: false), method: 'post' if logged_in? %>
+      <%= link_to '+', vote_post_path(post, vote: true), method: 'post', remote: true if logged_in? %>
+      <span id="post_<%=post.id%>_votes">[ <%= post.total_votes %> ]</span>
+      <%= link_to '-', vote_post_path(post, vote: false), method: 'post', remote: true if logged_in? %>
       |
       <%= link_to post.title, post_path(post) %> (<%= link_to "edit", edit_post_path(post)%>)
       <br/>
