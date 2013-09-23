@@ -9,10 +9,12 @@ class Post < ActiveRecord::Base
   validates :title, presence: true, length: {minimum: 5}
   validate :bad_words
 
+  after_validation :generate_slug
+
   def bad_words
   	title.split(' ').each do |word|
   		if BADWORDS.include?(word)
-  			errors.add(:title, "can't contain bad words")
+  			errors.add(:title, "can't cont ain bad words")
   			break
   		end
   	end
@@ -20,6 +22,14 @@ class Post < ActiveRecord::Base
 
   def total_votes
     self.votes.where(vote: true).size - self.votes.where(vote: false).size
+  end
+
+  def generate_slug
+    self.slug = self.title.gsub(' ', '-').downcase
+  end
+
+  def to_param
+    self.slug
   end
 
 end
