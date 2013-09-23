@@ -12,6 +12,11 @@
 
 <ul>
   <% @post.comments.each do |comment| %>
-    <li><%= comment.body %> </li>
+    <li>
+      <%= link_to '+', vote_post_path(comment, vote: true), method: 'comment' if logged_in? %>
+      [ <%= comment.total_votes %> ]
+      <%= link_to '-', vote_post_path(comment, vote: false), method: 'comment' if logged_in? %>
+      |
+      <%= comment.body %> </li>
   <% end %>
 </ul>
