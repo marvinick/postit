@@ -4,12 +4,12 @@
 	<% @posts.each do |post| %>
 	  <li>
       <%= link_to '+', vote_post_path(post, vote: true), method: 'post', remote: true if logged_in? %>
-      <span id="post_<%=post.id%>_votes">[ <%= post.total_votes %> ]</span>
+      <span id="post_<%=post.slug%>_votes">[ <%= post.total_votes %> ]</span>
       <%= link_to '-', vote_post_path(post, vote: false), method: 'post', remote: true if logged_in? %>
       |
       <%= link_to post.title, post_path(post) %> (<%= link_to "edit", edit_post_path(post)%>)
       <br/>
-      posted by marv <%= nice_date(post.created_at) %>
+      posted by <%= post.user_id %> on <%= nice_date(post.created_at) %>
     </li>
 	<% end %>
 </ul>
