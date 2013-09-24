@@ -19,4 +19,11 @@ class ApplicationController < ActionController::Base
       redirect_to root_path
     end
   end
+
+  def require_admin
+    if !logged_in? || !current_user.admin?
+      flash[:error] = "Can't do that. No permission"
+      redirect_to root_path
+    end
+  end
 end
