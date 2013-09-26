@@ -9,6 +9,9 @@
     <li>
       <%= link_to 'Log Out', logout_path %>
     </li>
+    <li>
+      <%= link_to 'Edit User', edit_user_path(current_user) %>
+    </li>
   <% else %>
     <li>
       <%= link_to 'Register', new_user_path %>
