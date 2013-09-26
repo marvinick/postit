@@ -15,8 +15,17 @@
   end
 
   def edit
-    @user = User.find(params[:id])
+    @user = User.find_by(slug: params[:id])
   end
+
+  # def update
+   # if @user.update(user_params)
+    #  flash[:notice] = "This user was updated"
+     # redirect_to root_path
+    #else
+     # render :edit
+    #end
+  # end
 
   private
 
