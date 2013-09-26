@@ -17,5 +17,10 @@ class User < ActiveRecord::Base
     self.slug = self.username.gsub(' ', '-').downcase
   end
 
+
+  def to_param
+    self.slug
+  end
+
 end
 
