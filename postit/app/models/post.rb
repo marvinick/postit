@@ -1,10 +1,12 @@
 class Post < ActiveRecord::Base
+  include VoteableMarvSept
+
 	BADWORDS = ['bad', 'words']
   belongs_to :user
   has_many :comments
   has_many :post_categories
   has_many :categories, through: :post_categories
-  has_many :votes, as: :voteable
+  #has_many :votes, as: :voteable
 
   validates :title, presence: true, length: {minimum: 5}
   validate :bad_words
@@ -20,9 +22,9 @@ class Post < ActiveRecord::Base
   	end
   end
 
-  def total_votes
-    self.votes.where(vote: true).size - self.votes.where(vote: false).size
-  end
+  #def total_votes
+  #  self.votes.where(vote: true).size - self.votes.where(vote: false).size
+  #end
 
   def generate_slug
     self.slug = self.title.gsub(' ', '-').downcase
