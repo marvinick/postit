@@ -1,4 +1,6 @@
 class CommentsController < ApplicationController
+  before_action :require_user, only: [:new, :create, :edit, :vote]
+
   def create
     @post = Post.find_by slug: params[:post_id]
     @comment = @post.comments.build(comment_params)
