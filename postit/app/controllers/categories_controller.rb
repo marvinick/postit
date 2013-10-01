@@ -6,8 +6,9 @@ class CategoriesController < ApplicationController
   end
 
   def show
-    @category = Category.new
-
+    @category = Category.find(params[:id])
+    @posts = @category.posts
+    render 'posts/index'
   end
 
   def create
