@@ -1,5 +1,5 @@
 class Post < ActiveRecord::Base
-  include VoteableMarvSept
+include VoteableMarvSept
 
 	BADWORDS = ['bad', 'words']
   belongs_to :user

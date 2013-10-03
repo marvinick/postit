@@ -15,7 +15,8 @@
  @import "bootstrap";
 
  .container {
-  margin-left: 200px
+  margin-left: 200px;
+  position: relative;
 }
 
 .navbar .nav > li > a.brand {
@@ -43,6 +44,6 @@ div.comment_votes {
 }
 
 body {
-  background-color: rgb(205,155,155);
+  background-color: rgb(102,205,233);
 }
 
