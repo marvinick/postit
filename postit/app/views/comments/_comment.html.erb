@@ -1,0 +1,28 @@
+<% show_post ||= false %>
+
+<div class="row" >
+  <div class='span0 well text-center comment_votes'>
+    <% if logged_in? %>
+      <%= link_to vote_post_comment_path(comment.post, comment, vote: true), method: 'post', 'data-remote' => true do %>
+        <i class='icon-arrow-up'></i>
+      <% end %>
+      <br/>
+    <% end %>
+    <span id='<%="comment_#{comment.id}_votes"%>'><%= comment.total_votes %></span> votes
+    <br/>
+    <% if logged_in? %>
+      <%= link_to vote_post_comment_path(comment.post, comment, vote: false), method: 'post', 'data-remote' => true do %>
+        <i class='icon-arrow-down'></i>
+      <% end %>
+    <% end %>
+  </div>
+  <div class='well span8'>
+    <em>"<%= comment.body %>"</em>
+    <% if show_post %>
+      on <%= link_to comment.post.title, post_path(comment.post) %>
+    <% end %>
+    <br/>
+    <span class="quiet">by</span> <%= link_to comment.creator.username, user_path(comment.creator) %>
+    <small> at <%= display_datetime(comment.created_at) %></small>
+  </div>
+</div>

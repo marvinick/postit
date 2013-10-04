@@ -1,22 +1,30 @@
-<h3>Show Post</h3>
-<%= link_to @post.title, fix_url(@post.url) %>
+<% if logged_in? && (current_user == @post.user || current_user.admin?) %>
+  <p class='pull-right'>
+    [<%= link_to "edit this post", edit_post_path(@post) %>]
+  </p>
+<% end %>
+<p>
+  <%= render @post.categories %>
+</p>
+<%= render 'shared/content_title', title: link_to(@post.title, fix_url(@post.url)) %>
+<p>
+  <%= @post.description %>
+</p>
 
-<h5>Comments:</h5>
+<hr/>
 
-<%= form_for [@post, @comment] do |f|  %>
-  <%= f.label :body, "Leave a comment" %>
-  <%= f.text_area :body, rows: 5 %>
-  <br/>
-  <%= f.submit "Create Comment", class: 'btn btn-primary' %>
+<% if logged_in? %>
+  <%= form_for [@post, @comment] do |f| %>
+    <%= render 'shared/errors', obj: @comment %>
+    <div class='control-group'>
+      <%= f.label :body, "Leave a comment" %>
+      <%= f.text_area :body, rows: 3, class: 'span4' %>
+    </div>
+    <%= f.submit "Create comment", class: "btn btn-primary" %>
+  <% end %>
 <% end %>
 
-<ul>
-  <% @post.comments.each do |comment| %>
-    <li>
-      <%= link_to '+', vote_post_path(@post, vote: true), method: 'post'  if logged_in? %>
-      [ <%= comment.total_votes %> ]
-      <%= link_to '-', vote_post_path(@post, vote: false), method: 'post' if logged_in? %>
-      |
-      <%= comment.body %> </li>
-  <% end %>
-</ul>
+<h5>Comments:</h5>
+<% @post.comments.reload.each do |comment| %>
+  <%= render 'comments/comment', comment: comment %>
+<% end %>
